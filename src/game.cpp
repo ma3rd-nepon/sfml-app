@@ -64,7 +64,7 @@ class Game {
         window.clear();
         window.draw(rect);
         window.draw(shape);
-        window.display();
+        window.display(); // aboba
     }
 
     void update() {
