@@ -4,7 +4,7 @@
         <strong>using SFML</strong>
     </p>
     <p>
-[![](https://img.shields.io/static/v1?style=for-the-badge&message=SFML&color=222222&logo=SFML&logoColor=8CC445&label=)](https://www.sfml-dev.org/)
+![SFML](https://img.shields.io/static/v1?style=for-the-badge&message=SFML&color=222222&logo=SFML&logoColor=8CC445&label=)
     </p>
 </div>
 
