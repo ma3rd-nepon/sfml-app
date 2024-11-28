@@ -16,7 +16,7 @@ Controller* Controller::getPlayerController() {
     return controller;
 }
 
-void Controller::controllPlayer(Player* player, float time) {
+void Controller::controllPlayer(Player* player, float time) { // дизентегрировать отсюда 
     sf::Vector2f updated_pos = player->getPosition();
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {

@@ -1,6 +1,9 @@
 #pragma once
 
 #include "../entity/entity.h"
+#include "../../extra/textures.h"
+#include <iostream>
+#include <filesystem>
 
 class Controller;
 
@@ -13,13 +16,16 @@ class Player : public Entity {
 private:
     State m_state;
     Controller* m_controller;
+    sf::RenderWindow* m_window;
 
 public:
     Player() = delete;
-    Player(const sf::Texture* texture, sf::Vector2f start_pos, float health);
+    Player(sf::RenderWindow* window, sf::Vector2f start_pos, float health);
     ~Player();
 
     void Update(float time) override;
 
     void setState(State state);
+
+    void draw();
 };

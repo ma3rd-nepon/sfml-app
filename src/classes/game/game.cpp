@@ -2,20 +2,20 @@
 
 
 Game::Game() {
-    window = new sf::RenderWindow (sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "anus rvetsya ot c++");
+    window = new sf::RenderWindow (sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), TITLE);
     window->setFramerateLimit(FPS);
 
     //textures::setTextures();
     sf::CircleShape shape(25.f);
     shape.setFillColor(sf::Color::Green);
-    player = new Player(shape.getTexture(), sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), PLAYER_START_HP);
+    player = new Player(window, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), PLAYER_START_HP);
 }
 
 Game::~Game() {
     delete player;
 }
 
-void Game::Initialize() {
+void Game::Start() {
     run();
 }
 
@@ -29,7 +29,7 @@ void Game::EventHandler(sf::Event& event) {
 
 void Game::draw() {
     window->clear();
-    window->draw(player->getSprite());
+    player->draw();
     window->display();
 }
 
