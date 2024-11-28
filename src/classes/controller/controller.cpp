@@ -16,20 +16,22 @@ Controller* Controller::getPlayerController() {
     return controller;
 }
 
-void Controller::controllPlayer(Player* player, float time) { // дизентегрировать отсюда 
+void Controller::controlPlayer(Player* player, const float& time) { // дизентегрировать отсюда
     sf::Vector2f updated_pos = player->getPosition();
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         updated_pos.y -= PLAYER_SPEED * time;
         player->setState(State::RUN);
-    } if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         updated_pos.x -= PLAYER_SPEED * time;
         player->setState(State::RUN);
         player->setDirection(Direction::LEFT);
-    } if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         updated_pos.y += PLAYER_SPEED * time;
         player->setState(State::RUN);
-    } if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         updated_pos.x += PLAYER_SPEED * time;
         player->setState(State::RUN);
         player->setDirection(Direction::RIGHT);

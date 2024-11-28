@@ -18,5 +18,5 @@ public:
 
     static Controller* getPlayerController();
 
-    void controllPlayer(Player* player, float time);
+    void controlPlayer(Player* player, const float& time);
 };

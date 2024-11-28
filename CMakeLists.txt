@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 3.30.5)
 project(sfml-app LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -25,5 +25,10 @@ set(SOURCE
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE})
 target_link_libraries(${CMAKE_PROJECT_NAME} sfml-graphics sfml-window sfml-system)
 target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
+
+add_custom_target(copy_assets
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${SOURCE_DIR}/assets ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/bin/assets
+)
+add_dependencies(${CMAKE_PROJECT_NAME}} copy_assets)
 
 install(TARGETS ${CMAKE_PROJECT_NAME})

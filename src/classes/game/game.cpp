@@ -5,10 +5,7 @@ Game::Game() {
     window = new sf::RenderWindow (sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), TITLE);
     window->setFramerateLimit(FPS);
 
-    //textures::setTextures();
-    sf::CircleShape shape(25.f);
-    shape.setFillColor(sf::Color::Green);
-    player = new Player(window, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), PLAYER_START_HP);
+    player = new Player(window, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), Direction::RIGHT, textures::player_texture);
 }
 
 Game::~Game() {
@@ -28,7 +25,7 @@ void Game::EventHandler(sf::Event& event) {
 }
 
 void Game::draw() {
-    window->clear();
+    window->clear(sf::Color(64, 64, 64));
     player->draw();
     window->display();
 }
@@ -42,7 +39,7 @@ void Game::run() {
         while (window->pollEvent(event)) {
             EventHandler(event);
         }
-        
+
         player->Update(time);
         draw();
     }
