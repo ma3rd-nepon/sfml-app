@@ -1,1 +1,2 @@
-./build/bin/sfml-app
+cd ./build/bin/
+./sfml-app
