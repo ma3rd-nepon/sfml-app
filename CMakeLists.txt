@@ -15,7 +15,7 @@ set(SOURCE_DIR src)
 set(SOURCE
     ${SOURCE_DIR}/main.cpp
     ${SOURCE_DIR}/extra/consts.cpp
-#    ${SOURCE_DIR}/extra/textures.h
+    ${SOURCE_DIR}/extra/textures.h
     ${SOURCE_DIR}/classes/game/game.h ${SOURCE_DIR}/classes/game/game.cpp
     ${SOURCE_DIR}/classes/controller/controller.h ${SOURCE_DIR}/classes/controller/controller.cpp
     ${SOURCE_DIR}/classes/entity/entity.h ${SOURCE_DIR}/classes/entity/entity.cpp
