@@ -1,11 +1,6 @@
 <div align="center">
     <h1>My first game on C++</h1>
-    <p>
-        <strong>using SFML</strong>
-    </p>
-    <p>
-![SFML](https://img.shields.io/static/v1?style=for-the-badge&message=SFML&color=222222&logo=SFML&logoColor=8CC445&label=)
-    </p>
+    <img alt="written using SFML" src="https://img.shields.io/badge/written%20using%20-%20SFML-222222?style=for-the-badge&logo=SFML&logoColor=8CC445&color=222222">
 </div>
 
 Создание 2д игры на С++ с помощью библиотеки SFML
