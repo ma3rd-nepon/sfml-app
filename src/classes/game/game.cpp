@@ -5,7 +5,7 @@ Game::Game() {
     window = new sf::RenderWindow (sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), TITLE);
     window->setFramerateLimit(FPS);
 
-    player = new Player(window, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), Direction::RIGHT, textures::player_texture);
+    player = new Player(window, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), Direction::RIGHT, pl_path);
 }
 
 Game::~Game() {

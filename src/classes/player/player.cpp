@@ -14,10 +14,10 @@ void Player::Update(float time) {
 
     switch (m_state) {
         case State::IDLE:
-
+            Animate(State::IDLE, m_can_animate);
             break;
         case State::RUN:
-
+            Animate(State::RUN, m_can_animate);
             break;
     }
 

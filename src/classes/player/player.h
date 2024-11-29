@@ -11,6 +11,7 @@ private:
     sf::RenderWindow* m_window;
     sf::Event m_event;
 
+
 public:
     Player() = delete;
     Player(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath);
