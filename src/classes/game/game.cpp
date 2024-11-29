@@ -2,10 +2,10 @@
 
 
 Game::Game() {
-    window = new sf::RenderWindow (sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), TITLE);
-    window->setFramerateLimit(FPS);
+    window = new sf::RenderWindow (sf::VideoMode(settings::WINDOW_WIDTH, settings::WINDOW_HEIGHT), strings::TITLE);
+    window->setFramerateLimit(settings::FPS);
 
-    player = new Player(window, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), Direction::RIGHT, pl_path);
+    player = new Player(window, sf::Vector2f(player::PLAYER_START_X, player::PLAYER_START_Y), Direction::RIGHT, strings::pl_path);
 }
 
 Game::~Game() {

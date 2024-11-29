@@ -5,7 +5,7 @@
 
 #include <cmath>
 
-#include "../../extra/consts.cpp"
+#include "../../extra/consts.h"
 //#include "../../extra/textures.h"
 
 #include "../player/player.h"

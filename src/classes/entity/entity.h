@@ -1,14 +1,14 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "../../extra/textures.h"
+#include "../../extra/set_textures.h"
 
-enum class Direction : bool {
+enum Direction : bool {
 	LEFT = false,
 	RIGHT = true
 };
 
-enum class State {
+enum State {
     IDLE,
     RUN
 };
@@ -18,26 +18,23 @@ protected:
 	sf::Vector2f m_size;
 	sf::Vector2f m_pos;
 	sf::Sprite   m_sprite;
-    sf::Texture  m_texture;
 	Direction    m_direction = Direction::RIGHT;
     State        m_state = State::IDLE;
-	sf::Texture* m_sheet;
+	sf::Texture  m_sheet;
 	bool 		 m_can_animate = true;
-	int 		 m_index = 0;
+	double 		 m_animation_timer = 0;
 
-	std::vector<std::vector<sf::Sprite>> m_textures;
-	std::vector<sf::Sprite> m_idle;
-	std::vector<sf::Sprite> m_walk;
+	std::vector<std::vector<sf::IntRect>> m_frames;
 
 public:
-    Entity(const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath);
+    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i& frames_quantity, const sf::Vector2i& frame_size);
 	virtual ~Entity();
 
 	virtual void Update(float time) = 0;
 
 	void setPosition(sf::Vector2f& pos);
 	void setDirection(Direction direction);
-	void Animate(State type, bool can_animate);
+	void Animate();
 
 	sf::Vector2f getSize() const;
 	sf::Vector2f getPosition() const;
