@@ -8,6 +8,8 @@ Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, 
     }
     m_sprite.setTexture(m_sheet);
     m_sprite.setScale(textures::scale, textures::scale);
+    m_sprite.setOrigin(m_sprite.getScale()/2.f);
+    m_sprite.setPosition(m_sprite.getOrigin());
     set_textures::generate_frames(m_frames, frames_quantity, frame_size);
     m_size = sf::Vector2f(static_cast<float>(m_sprite.getTextureRect().width), static_cast<float>(m_sprite.getTextureRect().height));
 }
