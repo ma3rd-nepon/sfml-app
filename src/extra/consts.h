@@ -21,10 +21,14 @@ namespace player {
 
     const float PLAYER_START_HP = 100;
 
-    const std::string pl_path = "./src/assets/textures/player.png";
+    const std::string pl_path = "./src/assets/textures/player_sheet.png";
 }
 
 namespace anim {
     const double RUN = 0.15;
     const double IDLE = 0.1;
+}
+
+namespace entity {
+    const float scaler = 5.f;
 }

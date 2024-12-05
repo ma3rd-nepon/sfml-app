@@ -31,7 +31,7 @@ protected:
 	std::vector<sf::IntRect> m_walk;
 
 public:
-    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i& frames_quantity, const sf::Vector2i& frame_size);
+    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath);
 	virtual ~Entity();
 
 	virtual void Update(float time) = 0;

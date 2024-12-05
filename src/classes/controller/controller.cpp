@@ -1,5 +1,6 @@
-#include "./controller.h"
+#include <cmath>
 
+#include "./controller.h"
 #include "../player/player.h"
 
 Controller* Controller::controller = nullptr;
@@ -17,25 +18,36 @@ Controller* Controller::getPlayerController() {
 }
 
 void Controller::controlPlayer(Player* player, const float& time) { // дизентегрировать отсюда
+    sf::Vector2f vel;
     sf::Vector2f updated_pos = player->getPosition();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        updated_pos.y -= player::PLAYER_SPEED * time;
+        vel.y -= player::PLAYER_SPEED * time;
         player->setState(State::RUN);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        updated_pos.x -= player::PLAYER_SPEED * time;
-        player->setState(State::RUN);
+        vel.x -= player::PLAYER_SPEED * time;
         player->setDirection(Direction::LEFT);
+        player->setState(State::RUN);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        updated_pos.y += player::PLAYER_SPEED * time;
+        vel.y += player::PLAYER_SPEED * time;
         player->setState(State::RUN);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-        updated_pos.x += player::PLAYER_SPEED * time;
-        player->setState(State::RUN);
+        vel.x += player::PLAYER_SPEED * time;
         player->setDirection(Direction::RIGHT);
+        player->setState(State::RUN);
     }
+
+    auto speed = std::sqrt(vel.x * vel.x + vel.y * vel.y);
+
+    if (speed > player::MAX_SPEED) {
+        vel.x *= player::MAX_SPEED / speed;
+        vel.y *= player::MAX_SPEED / speed;
+    }
+    updated_pos.x += vel.x;
+    updated_pos.y += vel.y;
+    
 
     player->setPosition(updated_pos);
 }

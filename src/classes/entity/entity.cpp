@@ -10,6 +10,7 @@ Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, 
 
     m_sprite.setTexture(m_sheet);
     m_sprite.setTextureRect(m_textures[0][0]);
+    m_sprite.setScale(entity::scaler, entity::scaler);
     m_sprite.setOrigin(m_sprite.getScale() / 2.0f);
 
     m_idle = m_textures[0];

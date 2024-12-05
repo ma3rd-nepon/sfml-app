@@ -41,7 +41,7 @@ namespace textures {
         texture.loadFromFile(texturepath);
 
         std::vector<sf::IntRect> r_idle = textures::cut_frame_list(&texture, 1, 3, 11, 16, 255, 0, 0);
-        std::vector<sf::IntRect> r_walk = textures::cut_frame_list(&texture, 1, 3, 80, 110, 255, 0, 17);
+        std::vector<sf::IntRect> r_walk = textures::cut_frame_list(&texture, 1, 3, 11, 16, 255, 0, 17);
 
         result.push_back(r_idle);
         result.push_back(r_walk);
