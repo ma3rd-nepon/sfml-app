@@ -25,9 +25,9 @@ protected:
 	bool 		 m_can_animate = true;
 	int 		 m_index = 0;
 
-	std::vector<std::vector<sf::Sprite>> m_textures;
-	std::vector<sf::Sprite> m_idle;
-	std::vector<sf::Sprite> m_walk;
+	std::vector<std::vector<sf::IntRect>> m_textures;
+	std::vector<sf::IntRect> m_idle;
+	std::vector<sf::IntRect> m_walk;
 
 public:
     Entity(const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath);

@@ -13,4 +13,4 @@ const float PLAYER_START_Y = WINDOW_HEIGHT/2;
 const float PLAYER_START_HP = 100;
 
 const std::string TITLE = "anus rvetsya ot c++";
-const std::string pl_path = "./assets/textures/player.png";
+const std::string pl_path = "./assets/textures/player1.png";

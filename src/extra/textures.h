@@ -4,11 +4,14 @@
 #include <vector>
 
 namespace textures {
-    static std::vector<sf::Sprite> cut_frame_list(sf::Texture* sheet, int rows, int columns, int width, int height, int transparent = 255) {
+    static std::vector<sf::IntRect> cut_frame_list(sf::Texture* sheet, int rows, int columns, int width, int height, int transparent = 255) {
         sf::Texture text;
         sf::Image base;
-        std::vector<sf::Sprite> frame_vec;
-        sf::IntRect frame;
+        std::vector<sf::IntRect> frame_vec;
+        sf::Rect<int> frame;
+
+        base.create(width, height);
+        text.create(width, height);
 
         if ((transparent > 0) && (transparent < 256)) {
             sf::Color c = base.getPixel(0, 0);
@@ -16,46 +19,45 @@ namespace textures {
             base.setPixel(0, 0, c);
         } else if ((transparent > 255) || (transparent < 0)) { transparent = 255; } 
 
-        base.create(width, height);
-        text.create(width, height);
-
         for (int i {0}; i < rows; i++) {
             for (int j {0}; j < columns; j++) {
-                frame = sf::IntRect(width * j + (j * 5), height * i + (10 * i), width, height);
-                text.loadFromImage(base, frame);
-                frame_vec.push_back(sf::Sprite(text));
+                frame = sf::Rect<int>((width * j + (j * 5)), (height * i + (10 * i)), width, height);
+                // text.loadFromImage(base, frame);
+                frame_vec.push_back(frame);
             }
         }
 
         return frame_vec;
     }
 
-    static std::vector<std::vector<sf::Sprite>> def_player_anims(std::string player_texturepath) {
-        sf::Texture player_texture;
-        std::vector<std::vector<sf::Sprite>> result;
+    static std::vector<std::vector<sf::IntRect>> def_anims(std::string texturepath) {
+        sf::Texture texture;
+        std::vector<std::vector<sf::IntRect>> result;
 
-        sf::Texture pl_idle;
-        sf::Texture pl_walk;
+        sf::Texture idle;
+        sf::Texture walk;
 
-        pl_idle.create(250, 110); // где то здесь ебатня // дтнаху
-        pl_walk.create(250, 110); // ща в д
+        texture.loadFromFile(texturepath);
+        unsigned int w {texture.getSize().x}; 
+        unsigned int h {texture.getSize().y};
+
+        idle.create(w, h); // где то здесь ебатня // дтнаху
+        walk.create(w, h); // ща в д
 
         sf::Image idle_base;
         sf::Image walk_base;
 
-        idle_base.create(250, 110);
-        walk_base.create(250, 110);
+        idle_base.create(w, h);
+        walk_base.create(w, h);
 
-        player_texture.loadFromFile(player_texturepath);
+        idle.loadFromImage(idle_base, sf::Rect<int>(0, 0, 250, 110));
+        walk.loadFromImage(walk_base, sf::Rect<int>(0, 120, 250, 110));
 
-        pl_idle.loadFromImage(idle_base, sf::Rect<int>(0, 0, 250, 110));
-        pl_walk.loadFromImage(walk_base, sf::Rect<int>(0, 120, 250, 110));
+        std::vector<sf::IntRect> r_idle = textures::cut_frame_list(&idle, 3, 1, 80, 110);
+        std::vector<sf::IntRect> r_walk = textures::cut_frame_list(&walk, 3, 1, 80, 110);
 
-        std::vector<sf::Sprite> player_idle = textures::cut_frame_list(&pl_idle, 3, 1, 80, 110);
-        std::vector<sf::Sprite> player_walk = textures::cut_frame_list(&pl_walk, 3, 1, 80, 110);
-
-        result.push_back(player_idle);
-        result.push_back(player_walk);
+        result.push_back(r_idle);
+        result.push_back(r_walk);
 
         return result;
     }
