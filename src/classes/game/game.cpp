@@ -1,11 +1,13 @@
+#include <iostream>
+
 #include "./game.h"
 
 
 Game::Game() {
-    window = new sf::RenderWindow (sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), TITLE);
-    window->setFramerateLimit(FPS);
+    window = new sf::RenderWindow (sf::VideoMode(window::WINDOW_WIDTH, window::WINDOW_HEIGHT), window::TITLE);
+    window->setFramerateLimit(window::FPS);
 
-    player = new Player(window, sf::Vector2f(PLAYER_START_X, PLAYER_START_Y), Direction::RIGHT, pl_path);
+    player = new Player(window, sf::Vector2f(player::PLAYER_START_X, player::PLAYER_START_Y), Direction::RIGHT, player::pl_path);
 }
 
 Game::~Game() {
@@ -41,6 +43,7 @@ void Game::run() {
         }
 
         player->Update(time);
+        // std::cout << player->getTimer();
         draw();
     }
 }

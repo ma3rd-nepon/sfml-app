@@ -9,27 +9,10 @@ Player::Player(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Di
 Player::~Player() = default;
 
 void Player::Update(float time) {
-    m_state = State::IDLE;
+    setState(State::IDLE);
     m_controller->controlPlayer(this, time);
-
-    switch (m_state) {
-        case State::IDLE:
-            Animate(State::IDLE, m_can_animate);
-            break;
-        case State::RUN:
-            Animate(State::RUN, m_can_animate);
-            break;
-    }
-
-    switch (m_direction) {
-        case Direction::LEFT:
-            break;
-        case Direction::RIGHT:
-
-            break;
-    }
-
     m_sprite.setPosition(m_pos);
+    Animate(m_can_animate);
 }
 
 void Player::setState(State state) {

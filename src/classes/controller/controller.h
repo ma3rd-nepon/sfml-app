@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../../extra/consts.cpp"
+#include "../../extra/consts.h"
 
 class Player;
 
