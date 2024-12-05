@@ -21,7 +21,7 @@ namespace player {
 
     const float PLAYER_START_HP = 100;
 
-    const std::string pl_path = "./src/assets/textures/player1.png";
+    const std::string pl_path = "./src/assets/textures/player.png";
 }
 
 namespace anim {

@@ -22,7 +22,7 @@ namespace textures {
 
         for (int i {0}; i < rows; i++) {
             for (int j {0}; j < columns; j++) {
-                frame = sf::Rect<int>((start_x + width * j + (j * 5)), (start_y + height * i + (10 * i)), width, height);
+                frame = sf::Rect<int>((start_x + width * j + j), (start_y + height * i + i), width, height);
                 // text.loadFromImage(base, frame);
                 frame_vec.push_back(frame);
             }
@@ -40,18 +40,11 @@ namespace textures {
 
         texture.loadFromFile(texturepath);
 
-        std::vector<sf::IntRect> r_idle = textures::cut_frame_list(&texture, 1, 3, 80, 110, 255, 0, 0);
-        std::vector<sf::IntRect> r_walk = textures::cut_frame_list(&texture, 1, 3, 80, 110, 255, 0, 120);
+        std::vector<sf::IntRect> r_idle = textures::cut_frame_list(&texture, 1, 3, 11, 16, 255, 0, 0);
+        std::vector<sf::IntRect> r_walk = textures::cut_frame_list(&texture, 1, 3, 80, 110, 255, 0, 17);
 
         result.push_back(r_idle);
         result.push_back(r_walk);
-
-        for (int i{0}; i < static_cast<int>(result.size()); i++) {
-            for (int j{0}; j < static_cast<int>(result[i].size()); j++) {
-                std::cout << result[i][j].width << " " << result[i][j].height << " " << result[i][j].left << " " << result[i][j].top << std::endl;
-            }
-            std::cout << std::endl;
-        }
 
         return result;
     }

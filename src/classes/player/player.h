@@ -9,8 +9,6 @@ class Player : public Entity {
 private:
     Controller* m_controller;
     sf::RenderWindow* m_window;
-    sf::Event m_event;
-
 
 public:
     Player() = delete;

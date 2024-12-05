@@ -5,12 +5,12 @@
 #include "../../extra/textures.h"
 #include "../../extra/consts.h"
 
-enum class Direction : bool {
+enum Direction : bool {
 	LEFT = false,
 	RIGHT = true
 };
 
-enum class State {
+enum State {
     IDLE,
     RUN
 };
@@ -20,10 +20,9 @@ protected:
 	sf::Vector2f m_size;
 	sf::Vector2f m_pos;
 	sf::Sprite   m_sprite;
-    sf::Texture  m_texture;
 	Direction    m_direction = Direction::RIGHT;
     State        m_state = State::IDLE;
-	sf::Texture* m_sheet;
+	sf::Texture  m_sheet;
 	bool 		 m_can_animate = true;
 	double 		 m_index = 0;
 
@@ -32,7 +31,7 @@ protected:
 	std::vector<sf::IntRect> m_walk;
 
 public:
-    Entity(const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath);
+    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i& frames_quantity, const sf::Vector2i& frame_size);
 	virtual ~Entity();
 
 	virtual void Update(float time) = 0;

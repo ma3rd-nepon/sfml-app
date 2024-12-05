@@ -6,9 +6,9 @@ Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, 
     m_direction = start_direction;
 
     m_textures = textures::def_anims(texture_filepath);
-    m_texture.loadFromFile(texture_filepath);
+    m_sheet.loadFromFile(texture_filepath);
 
-    m_sprite.setTexture(m_texture);
+    m_sprite.setTexture(m_sheet);
     m_sprite.setTextureRect(m_textures[0][0]);
     m_sprite.setOrigin(m_sprite.getScale() / 2.0f);
 

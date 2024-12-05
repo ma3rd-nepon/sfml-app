@@ -20,6 +20,7 @@ set(SOURCE
     ${SOURCE_DIR}/classes/controller/controller.h ${SOURCE_DIR}/classes/controller/controller.cpp
     ${SOURCE_DIR}/classes/entity/entity.h ${SOURCE_DIR}/classes/entity/entity.cpp
     ${SOURCE_DIR}/classes/player/player.h ${SOURCE_DIR}/classes/player/player.cpp
+        src/extra/functions.h
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE})
