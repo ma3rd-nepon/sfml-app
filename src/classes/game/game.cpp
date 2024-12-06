@@ -1,12 +1,12 @@
+#include <iostream>
+
 #include "./game.h"
 
 Game::Game() {
-    window = new sf::RenderWindow (sf::VideoMode(settings::WINDOW_WIDTH, settings::WINDOW_HEIGHT), strings::TITLE);
-    window->setFramerateLimit(settings::FPS);
-    camera = new sf::View(sf::Vector2f(0, 0), sf::Vector2f(settings::WINDOW_WIDTH, settings::WINDOW_HEIGHT));
+    window = new sf::RenderWindow (sf::VideoMode(window::WINDOW_WIDTH, window::WINDOW_HEIGHT), window::TITLE);
+    window->setFramerateLimit(window::FPS);
 
-    player = new Player(window, sf::Vector2f(0, 0), Direction::RIGHT, strings::pl_path);
-    circle = new sf::CircleShape(25.f);
+    player = new Player(window, sf::Vector2f(player::PLAYER_START_X, player::PLAYER_START_Y), Direction::RIGHT, player::pl_path);
 }
 
 Game::~Game() {

@@ -14,6 +14,8 @@ FetchContent_MakeAvailable(SFML)
 set(SOURCE_DIR src)
 set(SOURCE
     ${SOURCE_DIR}/main.cpp
+    ${SOURCE_DIR}/extra/consts.h
+    ${SOURCE_DIR}/extra/textures.h
     ${SOURCE_DIR}/extra/values.h
     ${SOURCE_DIR}/extra/set_textures.h
     ${SOURCE_DIR}/classes/game/game.h ${SOURCE_DIR}/classes/game/game.cpp

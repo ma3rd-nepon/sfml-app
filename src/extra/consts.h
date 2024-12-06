@@ -1,36 +1,38 @@
 #pragma once
 
-#include "SFML/System/Vector2.hpp"
+#include <iostream>
+#include <SFML/Graphics.hpp>
 
-namespace settings {
-    const float CAMERA_MAX_FOLLOW_SPEED = 0.14f;
-    const float CAMERA_MIN_FOLLOW_SPEED = 0.07f;
+namespace window {
+    const int WINDOW_WIDTH = 800;
+    const int WINDOW_HEIGHT = 600;
+
+    const int FPS = 60;
+
+    const std::string TITLE = "anus rvetsya ot c++";
 }
 
 namespace player {
-    const float PLAYER_SPEED = 1.f;
-    const float MAX_SPEED = 2.f;
+    const float PLAYER_SPEED = 5.f;
+    const float MAX_SPEED = 5.f;
+
+    const float PLAYER_START_X = window::WINDOW_WIDTH/2;
+    const float PLAYER_START_Y = window::WINDOW_HEIGHT/2;
+
+    const float PLAYER_START_HP = 100;
+
+    const std::string pl_path = "./src/assets/textures/player_sheet.png";
 }
 
-namespace strings{
-    const std::string TITLE = "anus hurts because of c++";
-    const std::string pl_path = "./assets/textures/player.png";
-    const std::string tiles_path = "./assets/textures/ground_tiles.png";
-}
-
-namespace textures {
-    const sf::Vector2i frame_margin {1, 1};
-    const unsigned short scale = 5;
-
-    const sf::Vector2i player_frame {11, 16};
-    const sf::Vector2i player_frames {2, 3};
-}
-
-namespace animation {
-    const double IDLE = 0.05;
+namespace anim {
     const double RUN = 0.15;
+    const double IDLE = 0.1;
 }
 
 namespace map {
     // TODO
+}
+
+namespace entity {
+    const float scaler = 5.f;
 }

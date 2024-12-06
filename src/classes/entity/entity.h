@@ -1,7 +1,9 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "../../extra/set_textures.h"
+
+#include "../../extra/textures.h"
+#include "../../extra/consts.h"
 
 enum Direction : bool {
 	LEFT = false,
@@ -22,22 +24,25 @@ protected:
     State        m_state = State::IDLE;
 	sf::Texture  m_sheet;
 	bool 		 m_can_animate = true;
-	double 		 m_animation_timer = 0;
+	double 		 m_index = 0;
 
-	std::vector<std::vector<sf::IntRect>> m_frames;
+	std::vector<std::vector<sf::IntRect>> m_textures;
+	std::vector<sf::IntRect> m_idle;
+	std::vector<sf::IntRect> m_walk;
 
 public:
-    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i& frames_quantity, const sf::Vector2i& frame_size);
+    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath);
 	virtual ~Entity();
 
 	virtual void Update(float time) = 0;
 
 	void setPosition(sf::Vector2f& pos);
 	void setDirection(Direction direction);
-	void Animate();
+	void Animate(bool can_animate);
 
 	sf::Vector2f getSize() const;
 	sf::Vector2f getPosition() const;
 	sf::Sprite getSprite() const;
 	Direction getDirection() const;
+	double getTimer() const;
 };

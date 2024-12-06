@@ -1,16 +1,20 @@
 #include "./entity.h"
+#include <iostream>
 
-Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i& frames_quantity, const sf::Vector2i& frame_size) {
+Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath) {
     m_pos = start_pos;
     m_direction = start_direction;
-    if (!m_sheet.loadFromFile(texture_filepath)) {
-        // error
-    }
+
+    m_textures = textures::def_anims(texture_filepath);
+    m_sheet.loadFromFile(texture_filepath);
+
     m_sprite.setTexture(m_sheet);
-    m_sprite.setScale(textures::scale, textures::scale);
-    m_sprite.setOrigin(m_sprite.getScale()/2.f);
-    m_sprite.setPosition(m_sprite.getOrigin());
-    set_textures::generate_frames(m_frames, frames_quantity, frame_size);
+    m_sprite.setTextureRect(m_textures[0][0]);
+    m_sprite.setScale(entity::scaler, entity::scaler);
+    m_sprite.setOrigin(m_sprite.getScale() / 2.0f);
+
+    m_idle = m_textures[0];
+    m_walk = m_textures[1];
     m_size = sf::Vector2f(static_cast<float>(m_sprite.getTextureRect().width), static_cast<float>(m_sprite.getTextureRect().height));
 }
 
@@ -38,28 +42,47 @@ Direction Entity::getDirection() const {
     return m_direction;
 }
 
-void Entity::Animate() {
-    if (!m_can_animate) return;
+double Entity::getTimer() const {
+    return m_index;
+}
+
+void Entity::Animate(bool can_animate) {
+    if (!can_animate) { return; }
+
+    sf::IntRect frame;
+
+    int max_frames = m_idle.size() >= m_walk.size() ? m_idle.size() : m_walk.size();
+
+    if (m_index >= static_cast<double>(max_frames)) { m_index = 0; }
+
     switch (m_state) {
-        case State::RUN:
-            m_animation_timer += animation::RUN;
+        case State::IDLE: {
+            m_index += anim::IDLE;
+            frame = m_idle[static_cast<int>(m_index)];
             break;
-        case State::IDLE:
-        default:
-            m_animation_timer += animation::IDLE;
+        }
+
+        case State::RUN: {
+            m_index += anim::RUN;
+            frame = m_walk[static_cast<int>(m_index)];
             break;
+        }
+
     }
-    if (m_animation_timer >= static_cast<double>(m_frames.size())) {
-        m_animation_timer = 0;
-    }
+
     switch (m_direction) {
-        case Direction::LEFT:
-            m_sprite.setTextureRect(set_textures::rect_flip_x(m_frames[m_state][static_cast<int>(m_animation_timer)]));
+        case Direction::RIGHT: {
+            m_sprite.setTextureRect(frame);
             break;
-        case Direction::RIGHT:
-            m_sprite.setTextureRect(m_frames[m_state][static_cast<int>(m_animation_timer)]);
+        }
+        case Direction::LEFT: {
+            m_sprite.setTextureRect(textures::flip_x(frame));
             break;
+        }
     }
+
+    // std::cout << "index is " << m_index << std::endl;
+    // std::cout << m_idle[0].getSize().x << " " << m_idle[0].getSize().y << std::endl;
 }
 
 Entity::~Entity() = default;
