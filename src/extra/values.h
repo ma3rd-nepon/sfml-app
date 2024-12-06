@@ -7,7 +7,7 @@ namespace settings {
     extern int WINDOW_HEIGHT;
 
     extern int FPS;
-    extern float CAMERA_FOLLOW_SPEED;
+    extern float CAMERA_SPEED;
 }
 
 namespace binds {

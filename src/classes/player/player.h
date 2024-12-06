@@ -12,7 +12,7 @@ private:
 
 public:
     Player() = delete;
-    Player(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath);
+    Player(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size);
     ~Player() override;
 
     void Update(float time) override;

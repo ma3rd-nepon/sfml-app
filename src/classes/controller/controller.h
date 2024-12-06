@@ -7,7 +7,7 @@ class Player;
 
 class Controller {
 private:
-    sf::Vector2f velocity;
+    // sf::Vector2f velocity;
     Controller() = default;
 
     static Controller* controller;

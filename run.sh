@@ -1,1 +1,1 @@
-./build/bin/sfml-app
+./build/bin/sfml-game

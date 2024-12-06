@@ -6,7 +6,7 @@ int settings::WINDOW_HEIGHT = 600;
 
 
 int settings::FPS = 60;
-float settings::CAMERA_FOLLOW_SPEED = settings::CAMERA_MAX_FOLLOW_SPEED;
+float settings::CAMERA_SPEED = camera::CAMERA_MAX_SPEED;
 
 
 sf::Keyboard::Key binds::move_up = sf::Keyboard::W;
