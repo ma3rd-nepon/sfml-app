@@ -16,6 +16,7 @@ namespace textures {
         sf::Rect<int> frame;
 
         for (int i {0}; i < rows; i++) {
+            frame_vec.emplace_back();
             for (int j {0}; j < columns; j++) {
                 frame = sf::Rect<int>((width * j + j), (height * i + i), width, height);
                 frame_vec[i].push_back(frame);

@@ -49,9 +49,7 @@ void Entity::Animate(bool can_animate) {
 
     sf::IntRect frame;
 
-    int max_frames = m_textures[m_state].size();
-
-    if (m_index >= static_cast<double>(max_frames)) { m_index = 0; }
+    int max_frames = static_cast<int>(m_textures[m_state].size());
 
     switch (m_state) {
         case State::IDLE: {
@@ -65,6 +63,8 @@ void Entity::Animate(bool can_animate) {
         }
 
     }
+
+    if (m_index >= static_cast<double>(max_frames)) { m_index = 0; }
 
     frame = m_textures[m_state][static_cast<int>(m_index)];
 
