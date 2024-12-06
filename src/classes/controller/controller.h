@@ -1,17 +1,18 @@
 #pragma once
 
-#include "../../extra/consts.h"
+#include "../../extra/values.h"
+#include "../../extra/functions.h"
 
 class Player;
 
 class Controller {
 private:
+    sf::Vector2f velocity;
     Controller() = default;
 
     static Controller* controller;
-  
-public:
 
+public:
     Controller(Controller const&) = delete;
     void operator=(Controller const&) = delete;
     ~Controller();

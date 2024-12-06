@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.30.5)
-project(sfml-app LANGUAGES CXX)
+project(sfml-game LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
@@ -16,11 +16,15 @@ set(SOURCE
     ${SOURCE_DIR}/main.cpp
     ${SOURCE_DIR}/extra/consts.h
     ${SOURCE_DIR}/extra/textures.h
+    ${SOURCE_DIR}/extra/values.h
+    ${SOURCE_DIR}/extra/set_textures.h
     ${SOURCE_DIR}/classes/game/game.h ${SOURCE_DIR}/classes/game/game.cpp
     ${SOURCE_DIR}/classes/controller/controller.h ${SOURCE_DIR}/classes/controller/controller.cpp
     ${SOURCE_DIR}/classes/entity/entity.h ${SOURCE_DIR}/classes/entity/entity.cpp
     ${SOURCE_DIR}/classes/player/player.h ${SOURCE_DIR}/classes/player/player.cpp
         src/extra/functions.h
+        src/extra/consts.h
+        src/extra/values.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE})

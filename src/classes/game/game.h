@@ -5,9 +5,8 @@
 
 #include <cmath>
 
-#include "../../extra/consts.h"
-//#include "../../extra/textures.h"
-
+#include "../../extra/values.h"
+#include "../../extra/functions.h"
 #include "../player/player.h"
 
 
@@ -23,8 +22,9 @@ private:
     void run();
 
     sf::RenderWindow* window;
-
+    sf::View* camera;
     Player* player;
+    sf::CircleShape* circle;
 
     sf::Clock clock;
     float time{};

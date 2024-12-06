@@ -29,6 +29,10 @@ namespace anim {
     const double IDLE = 0.1;
 }
 
+namespace map {
+    // TODO
+}
+
 namespace entity {
     const float scaler = 5.f;
 }
