@@ -42,11 +42,12 @@ namespace camera {
 }
 
 namespace map {
-    const int tile_size = 80;
-    const std::string tile_map = "./assets/test_map.csv";
-
-    const int tile_rows = 16;
-    const int tile_columns = 22;
+    const std::string tile_sheet = "./assets/textures/tile_sheet.png";
+    const float noise_frequency = 0.047f;
+    const int tile_size = 16;
+    const int tile_scale = 3;
+    const int tile_rows = 2;
+    const int tile_columns = 2;
 }
 
 namespace entity {

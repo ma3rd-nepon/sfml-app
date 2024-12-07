@@ -8,6 +8,7 @@
 #include "../../extra/values.h"
 #include "../../extra/functions.h"
 #include "../player/player.h"
+#include "../proc_map/tile_map.h"
 
 
 class Game {
@@ -24,7 +25,7 @@ private:
     sf::RenderWindow* window;
     sf::View* camera;
     Player* player;
-    sf::CircleShape* circle;
+    TileMap world = TileMap(0, "void");
 
     sf::Clock clock;
     float time{};

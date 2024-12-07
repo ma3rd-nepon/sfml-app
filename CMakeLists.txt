@@ -23,6 +23,12 @@ set(SOURCE
     ${SOURCE_DIR}/classes/controller/controller.h ${SOURCE_DIR}/classes/controller/controller.cpp
     ${SOURCE_DIR}/classes/entity/entity.h ${SOURCE_DIR}/classes/entity/entity.cpp
     ${SOURCE_DIR}/classes/player/player.h ${SOURCE_DIR}/classes/player/player.cpp
+    src/classes/proc_map/tile.h
+    src/classes/proc_map/chunk.cpp
+    src/classes/proc_map/chunk.h
+    src/classes/proc_map/tile.cpp
+    src/classes/proc_map/tile_map.cpp
+    src/classes/proc_map/tile_map.h
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE})
