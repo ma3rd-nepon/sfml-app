@@ -7,10 +7,15 @@ Game::Game() {
     window->setFramerateLimit(window::FPS);
     window->setVerticalSyncEnabled(true);
 
-    camera = new sf::View(sf::Vector2f(0, 0), sf::Vector2f(window::WINDOW_WIDTH, window::WINDOW_HEIGHT));
-    player = new Player(window, sf::Vector2f(player::PLAYER_START_X, player::PLAYER_START_Y), Direction::RIGHT, player::pl_path, player::player_rows_cols, player::player_frame_size, player::player_map);
+    map_texture.loadFromFile("./assets/textures/map.png");
+    map_sprite.setTexture(map_texture);
+    map_sprite.move(-500, -500);
+    map_sprite.setOrigin(500, 500);
+    map_sprite.setScale(3, 3);
 
-    circle = new sf::CircleShape(25.f);
+    camera = new sf::View(sf::Vector2f(0, 0), sf::Vector2f(window::WINDOW_WIDTH, window::WINDOW_HEIGHT));
+    player = new Player(window, sf::Vector2f(0, 0), Direction::RIGHT, player::pl_path, player::player_rows_cols, player::player_frame_size, player::player_map);
+    circle = new sf::CircleShape(5.f);
 }
 
 Game::~Game() {
@@ -32,6 +37,7 @@ void Game::EventHandler(sf::Event& event) {
 void Game::draw() {
     window->clear(sf::Color(51, 147, 255));
     window->setView(*camera);
+    window->draw(map_sprite);
     window->draw(*circle);
     player->draw();
     window->display();

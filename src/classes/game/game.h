@@ -26,6 +26,9 @@ private:
     Player* player;
     sf::CircleShape* circle;
 
+    sf::Texture map_texture;
+    sf::Sprite map_sprite;
+
     sf::Clock clock;
     float time{};
 };

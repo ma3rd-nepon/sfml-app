@@ -49,6 +49,11 @@ namespace map {
     const int tile_columns = 22;
 }
 
+namespace tiles {
+    const int tile_size = 16;
+    const int chunk_size = 8;
+}
+
 namespace entity {
     const float scaler = 5.f;
 }
