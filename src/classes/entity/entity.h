@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <string>
 
 #include "../../extra/textures.h"
 #include "../../extra/consts.h"
@@ -10,9 +11,9 @@ enum Direction : bool {
 	RIGHT = true
 };
 
-enum State {
-    IDLE,
-    RUN
+enum State : char {
+    IDLE = 'I',
+    RUN = 'R'
 };
 
 class Entity {
@@ -26,12 +27,12 @@ protected:
 	bool 		 m_can_animate = true;
 	double 		 m_index = 0;
 
-	std::vector<std::vector<sf::IntRect>> m_textures;
+	std::map<char, std::vector<sf::IntRect>> m_textures;
 	std::vector<sf::IntRect> m_idle;
 	std::vector<sf::IntRect> m_walk;
 
 public:
-    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size);
+    Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::map<char, int>& map);
 	virtual ~Entity();
 
 	virtual void Update(float time) = 0;

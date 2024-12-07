@@ -25,6 +25,7 @@ namespace player {
 
     const sf::Vector2i player_rows_cols = {2, 3};
     const sf::Vector2i player_frame_size = {11, 16};
+    const std::map<char, int> player_map = {{'I', 3}, {'R', 3}};
 
     // const std::vector<std::vector<std::vector<int>>> player_frame_size = {{{1, 3}, {11, 16}, {0, 0}}, {{1, 3}, {11, 16}, {0, 17}}};
 }
@@ -32,6 +33,7 @@ namespace player {
 namespace anim {
     const double RUN = 0.15;
     const double IDLE = 0.1;
+    const double DEFAULT = 0.1;
 }
 
 namespace camera {
@@ -40,7 +42,11 @@ namespace camera {
 }
 
 namespace map {
-    // TODO
+    const int tile_size = 80;
+    const std::string tile_map = "./assets/test_map.csv";
+
+    const int tile_rows = 16;
+    const int tile_columns = 22;
 }
 
 namespace entity {

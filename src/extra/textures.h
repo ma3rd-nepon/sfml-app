@@ -5,25 +5,40 @@
 #include <iostream>
 
 namespace textures {
-    static std::vector<std::vector<sf::IntRect>> cut_frame_list(const sf::Vector2i &rc, const sf::Vector2i &frame_size) {
+    static std::map<char, std::vector<sf::IntRect>> cut_frame_list(const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::map<char, int>& animations) {
         int rows = rc.x;
         int columns = rc.y;
 
         int width = frame_size.x;
         int height = frame_size.y;
 
-        std::vector<std::vector<sf::IntRect>> frame_vec;
+        std::map<char, std::vector<sf::IntRect>> frame_map;
         sf::Rect<int> frame;
 
-        for (int i {0}; i < rows; i++) {
-            frame_vec.emplace_back();
-            for (int j {0}; j < columns; j++) {
-                frame = sf::Rect<int>((width * j + j), (height * i + i), width, height);
-                frame_vec[i].push_back(frame);
+        std::map<char, int> map = animations;
+        
+        int temp_i = 0;
+        int temp_j = 0;
+        for (auto& [key, value] : animations) {
+            std::vector<sf::IntRect> animation;
+            for (int i {temp_i}; i < rows; i++) {
+                if (animation.size() >= map[key]) {
+                    temp_i = i;
+                    break;
+                }
+                for (int j {temp_j}; j < columns; j++) {
+                    frame = sf::Rect<int>((width * j + j), (height * i + i), width, height);
+                    animation.push_back(frame);
+                    if (animation.size() >= map[key]) {
+                        temp_j = (j == columns) ? j : 0; // daniel said that this need fix later
+                        break;
+                }
+                }
             }
+            frame_map[key] = animation;
         }
 
-        return frame_vec;
+        return frame_map;
     }
 
     // static std::vector<std::vector<sf::IntRect>> def_anims(std::string texturepath, int rows, int columns, int width, int height, int start_x=0, int start_y=0) {

@@ -2,7 +2,7 @@
 
 #include "../controller/controller.h"
 
-Player::Player(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size) : Entity(start_pos, start_direction, texture_filepath, rc, frame_size), m_window(window) {
+Player::Player(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size, const std::map<char, int>& map) : Entity(start_pos, start_direction, texture_filepath, rc, frame_size, map), m_window(window) {
     m_controller = Controller::getPlayerController();
 }
 

@@ -1,15 +1,15 @@
 #include "./entity.h"
 #include <iostream>
 
-Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size) {
+Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::map<char, int>& map) {
     m_pos = start_pos;
     m_direction = start_direction;
 
     m_sheet.loadFromFile(texture_filepath);
-    m_textures = textures::cut_frame_list(rc, frame_size);
+    m_textures = textures::cut_frame_list(rc, frame_size, map);
 
     m_sprite.setTexture(m_sheet);
-    m_sprite.setTextureRect(m_textures[0][0]);
+    m_sprite.setTextureRect(m_textures['I'][0]);
     m_sprite.setScale(entity::scaler, entity::scaler);
     m_sprite.setOrigin(m_sprite.getScale() / 2.0f);
 
@@ -47,6 +47,9 @@ double Entity::getTimer() const {
 void Entity::Animate(bool can_animate) {
     if (!can_animate) { return; }
 
+    // std::cout << m_textures['I'].size() << std::endl;
+    // std::cout << m_textures['R'].size() << std::endl;
+
     sf::IntRect frame;
 
     int max_frames = static_cast<int>(m_textures[m_state].size());
@@ -59,6 +62,11 @@ void Entity::Animate(bool can_animate) {
 
         case State::RUN: {
             m_index += anim::RUN;
+            break;
+        }
+
+        default: {
+            m_index += anim::DEFAULT;
             break;
         }
 
