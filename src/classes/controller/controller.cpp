@@ -23,7 +23,7 @@ void Controller::controlPlayer(Player* player, const float& time) { // дизе�
     float speed;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
-        speed = player::MAX_SPEED;
+        speed = player::RUN_SPEED;
         settings::CAMERA_SPEED = camera::CAMERA_MIN_SPEED;
     } else {
         speed = player::PLAYER_SPEED;
@@ -51,12 +51,21 @@ void Controller::controlPlayer(Player* player, const float& time) { // дизе�
 
     auto current_speed = std::sqrt(vel.x * vel.x + vel.y * vel.y);
 
-    if (speed > player::MAX_SPEED) {
-        vel.x *= player::MAX_SPEED / current_speed;
-        vel.y *= player::MAX_SPEED / current_speed;
+    // if (current_speed > player::MAX_SPEED) {
+    //     vel.x *= player::MAX_SPEED / current_speed;
+    //     vel.y *= player::MAX_SPEED / current_speed;
+    // }
+
+    if (current_speed > player::MAX_SPEED) {
+        vel.x /= std::sqrt(2);
+        vel.y /= std::sqrt(2);
     }
+
     updated_pos.x += vel.x;
     updated_pos.y += vel.y;
+
+    std::cout << std::sqrt(vel.x * vel.x + vel.y * vel.y) << std::endl;
+    // std::cout << vel.x << " " << vel.y << std::endl;
     
 
     // sf::Vector2f borders = {

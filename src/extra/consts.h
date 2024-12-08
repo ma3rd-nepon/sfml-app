@@ -13,8 +13,9 @@ namespace window {
 }
 
 namespace player {
-    const float PLAYER_SPEED = 1.5f;
-    const float MAX_SPEED = 2.4f;
+    const float PLAYER_SPEED = 1.7f;
+    const float RUN_SPEED = 2.8f;
+    const float MAX_SPEED = 6.f;
 
     const float PLAYER_START_X = window::WINDOW_WIDTH/2;
     const float PLAYER_START_Y = window::WINDOW_HEIGHT/2;
