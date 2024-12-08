@@ -24,6 +24,7 @@ private:
     sf::RenderWindow* window;
     sf::View* camera;
     Player* player;
+    Neutral* skeleton;
     sf::CircleShape* circle;
 
     sf::Texture map_texture;

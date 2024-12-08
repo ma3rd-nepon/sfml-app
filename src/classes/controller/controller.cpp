@@ -63,9 +63,6 @@ void Controller::controlPlayer(Player* player, const float& time) { // дизе�
 
     updated_pos.x += vel.x;
     updated_pos.y += vel.y;
-
-    std::cout << std::sqrt(vel.x * vel.x + vel.y * vel.y) << std::endl;
-    // std::cout << vel.x << " " << vel.y << std::endl;
     
 
     // sf::Vector2f borders = {

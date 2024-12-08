@@ -15,10 +15,6 @@ void Player::Update(float time) {
     Animate(m_can_animate);
 }
 
-void Player::setState(State state) {
-    m_state = state;
-}
-
 void Player::draw() {
     m_window->draw(m_sprite);
 }

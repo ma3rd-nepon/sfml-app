@@ -1,5 +1,6 @@
 #include "./entity.h"
 #include <iostream>
+#include <algorithm>
 
 Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::map<char, int>& map) {
     m_pos = start_pos;
@@ -22,6 +23,10 @@ void Entity::setPosition(sf::Vector2f& pos) {
 
 void Entity::setDirection(Direction direction) {
     m_direction = direction;
+}
+
+void Entity::setState(State state) {
+    m_state = state;
 }
 
 sf::Vector2f Entity::getSize() const {
@@ -92,3 +97,71 @@ void Entity::Animate(bool can_animate) {
 }
 
 Entity::~Entity() = default;
+
+
+Neutral::Neutral(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size, const std::map<char, int>& map) : Entity(start_pos, start_direction, texture_filepath, rc, frame_size, map) {
+    m_schedule = {State::IDLE, State::RUN, State::RUN, State::IDLE};
+    
+}
+
+Neutral::~Neutral() = default;
+
+void Neutral::Update(float time) {
+    do_schedule();
+    m_sprite.setPosition(m_pos);
+    Animate(m_can_animate);
+}
+
+void Neutral::draw() {
+    m_window->draw(m_sprite);
+}
+
+sf::Vector2i Neutral::getNewPosition() {
+    sf::Vector2i new_pos;
+    new_pos.x = randoms::random_int(static_cast<int>(m_pos.x-5), static_cast<int>(m_pos.x+5));
+    new_pos.y = randoms::random_int(static_cast<int>(m_pos.y-5), static_cast<int>(m_pos.y+5));
+
+    return new_pos;
+}
+
+void Neutral::do_schedule() {
+    if (m_state_index >= m_schedule.size()) {
+        m_state_index = 0;
+        refresh_schedule();
+    }
+
+    setState(m_schedule[m_state_index]);
+
+    switch (m_schedule[m_state_index]) {
+        case (State::IDLE): {
+            m_timer += 1;
+
+            if (m_timer >= 60) {
+                m_timer = 0;
+                m_state_index++;
+                break;
+            }
+        }
+        
+        case (State::RUN): {
+            sf::Vector2i new_pos = getNewPosition();
+
+            if (abs(new_pos.x - m_pos.x) > 1) {
+                m_pos.x += 0.15;
+            }
+
+            if (abs(new_pos.y - m_pos.y) > 1) {
+                m_pos.y += 0.15;
+            }
+
+            else {
+                m_state_index++;
+                break;
+            }
+        }
+    }
+}
+
+void Neutral::refresh_schedule() {
+    std::shuffle(m_schedule.begin(), m_schedule.end(), randoms::gen);
+}
