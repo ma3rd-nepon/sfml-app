@@ -26,13 +26,14 @@ namespace player {
 
     const sf::Vector2i player_rows_cols = {2, 3};
     const sf::Vector2i player_frame_size = {11, 16};
-    const std::map<char, int> player_map = {{'I', 3}, {'R', 3}};
+    const std::vector<std::pair<char, int>> player_map = {{'I', 3}, {'R', 3}};
 
     // const std::vector<std::vector<std::vector<int>>> player_frame_size = {{{1, 3}, {11, 16}, {0, 0}}, {{1, 3}, {11, 16}, {0, 17}}};
 }
 
 namespace anim {
     const double RUN = 0.15;
+    const double SHIFT_RUN = 0.30;
     const double IDLE = 0.1;
     const double DEFAULT = 0.1;
 }
@@ -61,5 +62,5 @@ namespace entity {
     const std::string skeleton_path = "./assets/textures/skeleton.png";
     const sf::Vector2i skeleton_rc = {4, 6};
     const sf::Vector2i skeleton_frame_size = {14, 17};
-    const std::map<char, int> skeleton_map = {{'S', 10}, {'I', 6}, {'R', 6}};
+    const std::vector<std::pair<char, int>> skeleton_map = {{'S', 10}, {'I', 6}, {'R', 6}};
 }

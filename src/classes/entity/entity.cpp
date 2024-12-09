@@ -2,7 +2,7 @@
 #include <iostream>
 #include <algorithm>
 
-Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::map<char, int>& map) {
+Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::vector<std::pair<char, int>>& map) {
     m_pos = start_pos;
     m_direction = start_direction;
 
@@ -52,9 +52,6 @@ double Entity::getTimer() const {
 void Entity::Animate(bool can_animate) {
     if (!can_animate) { return; }
 
-    // std::cout << m_textures['I'].size() << std::endl;
-    // std::cout << m_textures['R'].size() << std::endl;
-
     sf::IntRect frame;
 
     int max_frames = static_cast<int>(m_textures[m_state].size());
@@ -79,6 +76,8 @@ void Entity::Animate(bool can_animate) {
 
     if (m_index >= static_cast<double>(max_frames)) { m_index = 0; }
 
+    // std::cout << m_textures.size() << " " << m_state << " " << m_index << std::endl;
+
     frame = m_textures[m_state][static_cast<int>(m_index)];
 
     switch (m_direction) {
@@ -91,15 +90,12 @@ void Entity::Animate(bool can_animate) {
             break;
         }
     }
-
-    // std::cout << "index is " << m_index << std::endl;
-    // std::cout << m_idle[0].getSize().x << " " << m_idle[0].getSize().y << std::endl;
 }
 
 Entity::~Entity() = default;
 
 
-Neutral::Neutral(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size, const std::map<char, int>& map) : Entity(start_pos, start_direction, texture_filepath, rc, frame_size, map) {
+Neutral::Neutral(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size, const std::vector<std::pair<char, int>>& map) : Entity(start_pos, start_direction, texture_filepath, rc, frame_size, map) {
     m_schedule = {State::IDLE, State::RUN, State::RUN, State::IDLE};
     
 }
@@ -113,7 +109,15 @@ void Neutral::Update(float time) {
 }
 
 void Neutral::draw() {
-    m_window->draw(m_sprite);
+    // std::cout << "drawing " << m_sprite.getTexture() << std::endl;
+    // m_window->draw(m_sprite);
+    // for (auto [key, value] : m_textures) {
+    //     std::cout << "key - " << key << std::endl;
+    //     for (sf::IntRect i : value) {
+    //         std::cout << i.getPosition().x << " " << i.getPosition().y << std::endl;
+    //     }
+    // }
+    // std::cout << std::endl << std::endl;
 }
 
 sf::Vector2i Neutral::getNewPosition() {
