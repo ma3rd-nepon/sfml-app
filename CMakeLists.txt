@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30.5)
+cmake_minimum_required(VERSION 3.28.6)
 project(sfml-game LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -13,16 +13,17 @@ FetchContent_MakeAvailable(SFML)
 
 set(SOURCE_DIR src)
 set(SOURCE
-    ${SOURCE_DIR}/main.cpp
-    ${SOURCE_DIR}/extra/consts.h
-    ${SOURCE_DIR}/extra/textures.h
-    ${SOURCE_DIR}/extra/values.h ${SOURCE_DIR}/extra/values.cpp
-    ${SOURCE_DIR}/extra/functions.h
-    # ${SOURCE_DIR}/extra/set_textures.h
-    ${SOURCE_DIR}/classes/game/game.h ${SOURCE_DIR}/classes/game/game.cpp
-    ${SOURCE_DIR}/classes/controller/controller.h ${SOURCE_DIR}/classes/controller/controller.cpp
-    ${SOURCE_DIR}/classes/entity/entity.h ${SOURCE_DIR}/classes/entity/entity.cpp
-    ${SOURCE_DIR}/classes/player/player.h ${SOURCE_DIR}/classes/player/player.cpp
+        ${SOURCE_DIR}/main.cpp
+        ${SOURCE_DIR}/extra/consts.h
+        ${SOURCE_DIR}/extra/textures.h
+        ${SOURCE_DIR}/extra/values.h ${SOURCE_DIR}/extra/values.cpp
+        ${SOURCE_DIR}/extra/functions.h
+        # ${SOURCE_DIR}/extra/set_textures.h
+        ${SOURCE_DIR}/classes/game/game.h ${SOURCE_DIR}/classes/game/game.cpp
+        ${SOURCE_DIR}/classes/controller/controller.h ${SOURCE_DIR}/classes/controller/controller.cpp
+        ${SOURCE_DIR}/classes/entity/entity.h ${SOURCE_DIR}/classes/entity/entity.cpp
+        ${SOURCE_DIR}/classes/entity/neutral.h ${SOURCE_DIR}/classes/entity/neutral.cpp
+        ${SOURCE_DIR}/classes/player/player.h ${SOURCE_DIR}/classes/player/player.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE})

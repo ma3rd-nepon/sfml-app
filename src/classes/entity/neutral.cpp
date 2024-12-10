@@ -3,7 +3,7 @@
 Entity::~Entity() = default;
 
 
-Neutral::Neutral(sf::RenderWindow* window, const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size, const std::vector<std::pair<char, int>>& map) : Entity(window, start_pos, start_direction, texture_filepath, rc, frame_size, map) {
+Neutral::Neutral(const sf::Vector2f& start_pos, const Direction& start_direction, const std::string& texture_filepath, const sf::Vector2i& rc, const sf::Vector2i& frame_size, const std::vector<std::pair<char, int>>& map) : Entity(start_pos, start_direction, texture_filepath, rc, frame_size, map) {
     m_schedule = State::IDLE;
     
 }

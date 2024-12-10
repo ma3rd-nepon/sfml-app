@@ -2,8 +2,7 @@
 #include <iostream>
 #include <algorithm>
 
-Entity::Entity(sf::RenderWindow* window, const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::vector<std::pair<char, int>>& map) {
-    m_window = window;
+Entity::Entity(const sf::Vector2f &start_pos, const Direction &start_direction, const std::string &texture_filepath, const sf::Vector2i &rc, const sf::Vector2i &frame_size, const std::vector<std::pair<char, int>>& map) {
     m_pos = start_pos;
     m_direction = start_direction;
 
@@ -51,10 +50,6 @@ Direction Entity::getDirection() const {
 
 double Entity::getTimer() const {
     return m_index;
-}
-
-void Entity::draw() {
-    m_window->draw(m_sprite);
 }
 
 void Entity::Animate(bool can_animate) {
