@@ -63,4 +63,9 @@ namespace entity {
     const sf::Vector2i skeleton_rc = {4, 6};
     const sf::Vector2i skeleton_frame_size = {14, 17};
     const std::vector<std::pair<char, int>> skeleton_map = {{'S', 10}, {'I', 6}, {'R', 6}};
+
+    const std::string pig_path = "./assets/textures/pig.png";
+    const sf::Vector2i pig_rc = {2, 6};
+    const sf::Vector2i pig_frame_size = {21, 14};
+    const std::vector<std::pair<char, int>> pig_map = {{'I', 6}, {'R', 6}};
 }

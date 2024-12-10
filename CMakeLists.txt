@@ -27,6 +27,6 @@ set(SOURCE
 
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE})
 target_link_libraries(${CMAKE_PROJECT_NAME} sfml-graphics sfml-window sfml-system)
-target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
+target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_23)
 
 install(TARGETS ${CMAKE_PROJECT_NAME})

@@ -18,6 +18,11 @@ I linear_interpolation(const I& value, const I& x0, const I& x1, const I& y0, co
     return y0 + (y1 - y0) * (value - x0)/(x1 - x0);
 }
 
+static sf::Vector2f normalize(const sf::Vector2f& vec) {
+    float length = sqrt(vec.x*vec.x + vec.y*vec.y);
+        return { vec.x / length, vec.y / length};
+}
+
 namespace randoms {
     static std::random_device rd;
     static std::mt19937 gen(rd());

@@ -15,7 +15,9 @@ Game::Game() {
 
     camera = new sf::View(sf::Vector2f(0, 0), sf::Vector2f(window::WINDOW_WIDTH, window::WINDOW_HEIGHT));
     player = new Player(window, sf::Vector2f(0, 0), Direction::RIGHT, player::pl_path, player::player_rows_cols, player::player_frame_size, player::player_map);
-    skeleton = new Neutral(window, sf::Vector2f(0, 0), Direction::RIGHT, entity::skeleton_path, entity::skeleton_rc, entity::skeleton_frame_size, entity::skeleton_map);
+    m_entities.push_back(player);
+    // AddNeutralEntity(sf::Vector2f(0, 2), Direction::RIGHT, entity::skeleton_path, entity::skeleton_rc, entity::skeleton_frame_size, entity::skeleton_map);
+    skeleton = new Neutral(window, sf::Vector2f(0, -1), Direction::RIGHT, entity::pig_path, entity::pig_rc, entity::pig_frame_size, entity::pig_map);
     circle = new sf::CircleShape(5.f);
 }
 
@@ -26,6 +28,10 @@ Game::~Game() {
 void Game::Start() {
     run();
 }
+
+// void Game::AddNeutralEntity(const sf::Vector2f& start_pos, const Direction direction, const std::string& path, const sf::Vector2i& rc, const sf::Vector2i& frame_size, const std::vector<std::pair<char, int>>& map) {
+//     m_entities.push_back(new Neutral(window, start_pos, direction, path, rc, frame_size, map));
+// }
 
 void Game::EventHandler(sf::Event& event) {
     switch (event.type) {
@@ -39,9 +45,15 @@ void Game::draw() {
     window->clear(sf::Color(51, 147, 255));
     window->setView(*camera);
     window->draw(map_sprite);
+
     window->draw(*circle);
     player->draw();
     skeleton->draw();
+    
+    for (Entity* obj : m_entities) {
+        obj->draw();
+    }
+
     window->display();
 }
 
@@ -57,6 +69,11 @@ void Game::run() {
 
         player->Update(time);
         skeleton->Update(time);
+        
+        // for (Entity* obj : m_entities) {
+        //     obj->Update(time);
+        // }
+
         camera->setCenter(sf::Vector2f(
                 linear_interpolation(settings::CAMERA_SPEED, 0.f, 1.f, static_cast<float>(camera->getCenter().x), static_cast<float>(player->getSprite().getPosition().x)),
                 linear_interpolation(settings::CAMERA_SPEED, 0.f, 1.f, static_cast<float>(camera->getCenter().y), static_cast<float>(player->getSprite().getPosition().y))
