@@ -26,6 +26,8 @@ jobs:
             run: |
               sudo apt-get update
               sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev udev libudev-dev
+              sudo apt-get install libopenal1 libopenal-dev
+              sudo apt-get install libalut0 libalut-dev
               sudo apt-get install libsfml-dev
             
           - name: Configuring Cmake
