@@ -33,7 +33,7 @@ jobs:
         
           - name: Setup FLAC
             run: |
-              sudo apt-get install flac libflac12 
+              sudo apt-get install flac
             
             continue-on-error: true
             
