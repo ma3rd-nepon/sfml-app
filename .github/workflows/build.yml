@@ -18,6 +18,9 @@ jobs:
             uses: actions/checkout@v4
             with:
                 repository: ma3rd-nepon/sfml-app
+        
+          - name: Deleting old files
+            run: rm -rf build/
             
           - name: Configuring Cmake
             run: bash configure_cmake.sh 
@@ -25,14 +28,15 @@ jobs:
           - name: Building App
             run: bash linux_build.sh
         
+          - name: Zip app with assets
+            run: |
+              zip -r sfml-app.zip build/bin
         
           - name: Upload App
             uses: actions/upload-artifact@v3
             with:
                 name: ${{ matrix.os }} Build
                 path: |
-                  build/bin/*.bin
-                  build/bin/*.exe
-                  build/bin/*.elf
+                  /*.zip
             continue-on-error: true
 
