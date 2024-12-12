@@ -16,6 +16,11 @@ FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
     GIT_TAG 2.6.x
 )
+
+FetchContent_Declare(VORBIS
+    GIT_REPOSITORY https://github.com/xiph/vorbis.git
+)
+
 FetchContent_MakeAvailable(SFML)
 
 set(SOURCE_DIR src)

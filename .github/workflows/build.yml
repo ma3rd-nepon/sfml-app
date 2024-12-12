@@ -32,6 +32,8 @@ jobs:
               sudo apt install git automake m4 libtool build-essential libvorbis-dev
               sudo apt build-dep libvorbis
             
+            continue-on-error: true
+            
           - name: Configuring Cmake
             run: bash configure_cmake.sh 
 
