@@ -25,7 +25,8 @@ jobs:
           - name: Setup OpenGL
             run: |
               sudo apt-get update
-              sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev udev
+              sudo apt-get install libglu1-mesa-dev freeglut3-dev mesa-common-dev udev libudev-dev
+              sudo apt-get SFML SFML-devel sfml-dev
             
           - name: Configuring Cmake
             run: bash configure_cmake.sh 
