@@ -1,0 +1,38 @@
+name: Building app
+
+on:
+    push:
+        branches: [ "test" ]
+
+jobs:
+    app-build:
+        strategy:
+            matrix:
+                os: [ubuntu-latest]
+    
+
+        runs-on: ${{ matrix.os }}
+
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+            with:
+                repository: ma3rd-nepon/sfml-app
+            
+          - name: Configuring Cmake
+            run: bash configure_cmake.sh 
+
+          - name: Building App
+            run: bash linux_build.sh
+        
+        
+          - name: Upload App
+            uses: actions/upload-artifact@v3
+            with:
+                name: ${{ matrix.os }} Build
+                path: |
+                  build/bin/*.bin
+                  build/bin/*.exe
+                  build/bin/*.elf
+            continue-on-error: true
+
