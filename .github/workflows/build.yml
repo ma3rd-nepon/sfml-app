@@ -21,6 +21,10 @@ jobs:
         
           - name: Deleting old files
             run: rm -rf build/
+        
+          - name: Setup OpenGL
+            uses: openrndr/setup-opengl@v1.1
+          - run: xvfb-run glxinfo
             
           - name: Configuring Cmake
             run: bash configure_cmake.sh 
